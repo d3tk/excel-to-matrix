@@ -73,10 +73,13 @@ void loadWCSVh(std::string file_name)
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
     csv::CSVReader reader(file_name);
+    i = 0;
+    j = 0;
     for (csv::CSVRow &row : reader)
     {
         for (csv::CSVField &field : row)
         {
+            // std::cout << field.get<std::string>() << std::endl;
             matrix2[i][j] = field.get<std::string>();
             j++;
         }
@@ -90,30 +93,30 @@ void loadWCSVh(std::string file_name)
 int main(int argc, char const *argv[])
 {
 
-    std::string file_path = "dataset.csv";
+    std::string file_path = "../dataset.csv";
 
     loadWCSVh(file_path);
     loadCSV(file_path);
 
-    for (unsigned i = 0; i < matrix1.size(); i++)
-    {
-        for (unsigned j = 0; j < matrix1[0].size(); j++)
-        {
-            string output = matrix1[i][j] + " ";
-            cout << output;
-        }
-        cout << std::endl;
-    }
+    // for (unsigned i = 0; i < matrix1.size(); i++)
+    // {
+    //     for (unsigned j = 0; j < matrix1[0].size(); j++)
+    //     {
+    //         string output = matrix1[i][j] + " ";
+    //         cout << output;
+    //     }
+    //     cout << std::endl;
+    // }
 
-    for (unsigned i = 0; i < matrix2.size(); i++)
-    {
-        for (unsigned j = 0; j < matrix2[0].size(); j++)
-        {
-            string output = matrix1[i][j] + " ";
-            cout << output;
-        }
-        cout << std::endl;
-    }
+    // for (unsigned i = 0; i < matrix2.size(); i++)
+    // {
+    //     for (unsigned j = 0; j < matrix2[0].size(); j++)
+    //     {
+    //         string output = matrix2[i][j] + " ";
+    //         cout << output;
+    //     }
+    //     cout << std::endl;
+    // }
     cout << "Done, exiting \n";
     return 0;
 }
