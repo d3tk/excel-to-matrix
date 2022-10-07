@@ -3,11 +3,10 @@
 #include <fstream>
 #include <vector>
 #include <chrono>
-#include "csv.hpp"
+
 using namespace std;
 
-std::vector<std::vector<string>> matrix1(1001, std::vector<string>(4));
-std::vector<std::vector<string>> matrix2(1001, std::vector<string>(4));
+std::vector<std::vector<string> > matrix(1001, std::vector<string>(4));
 void loadCSV(std::string file_name)
 {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
@@ -48,7 +47,7 @@ void loadCSV(std::string file_name)
                     else
                     {
                         // cout << "reached , seperator \n";
-                        matrix1[k][j] = temp;
+                        matrix[k][j] = temp;
                         temp = "";
                         j++;
                     }
@@ -66,57 +65,22 @@ void loadCSV(std::string file_name)
               << " with my implementation " << std::endl;
 }
 
-void loadWCSVh(std::string file_name)
-{
-    int i;
-    int j;
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-
-    csv::CSVReader reader(file_name);
-    i = 0;
-    j = 0;
-    for (csv::CSVRow &row : reader)
-    {
-        for (csv::CSVField &field : row)
-        {
-            // std::cout << field.get<std::string>() << std::endl;
-            matrix2[i][j] = field.get<std::string>();
-            j++;
-        }
-        i++;
-    }
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::cout << "Matrix loaded in: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() << "[ns]"
-              << " with csvreader library " << std::endl;
-}
-
 int main(int argc, char const *argv[])
 {
 
-    std::string file_path = "../dataset.csv";
-
-    loadWCSVh(file_path);
+    std::string file_path = "data/dataset.csv";
     loadCSV(file_path);
 
-    // for (unsigned i = 0; i < matrix1.size(); i++)
-    // {
-    //     for (unsigned j = 0; j < matrix1[0].size(); j++)
-    //     {
-    //         string output = matrix1[i][j] + " ";
-    //         cout << output;
-    //     }
-    //     cout << std::endl;
-    // }
+    for (unsigned i = 0; i < matrix.size(); i++)
+    {
+        for (unsigned j = 0; j < matrix[0].size(); j++)
+        {
+            string output = matrix[i][j] + " ";
+            cout << output;
+        }
+        cout << std::endl;
+    }
 
-    // for (unsigned i = 0; i < matrix2.size(); i++)
-    // {
-    //     for (unsigned j = 0; j < matrix2[0].size(); j++)
-    //     {
-    //         string output = matrix2[i][j] + " ";
-    //         cout << output;
-    //     }
-    //     cout << std::endl;
-    // }
     cout << "Done, exiting \n";
     return 0;
 }
