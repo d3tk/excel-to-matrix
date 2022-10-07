@@ -68,7 +68,11 @@ void loadCSV(std::string file_name)
 int main(int argc, char const *argv[])
 {
 
-    std::string file_path = "data/dataset.csv";
+    std::string file_path = "data/";
+    std::string file_name = "";
+    std::cout << "Enter file name with extension: (ie dataset.csv) ";
+    std::cin >> file_name;
+    file_path = file_path + file_name;
     loadCSV(file_path);
 
     for (unsigned i = 0; i < matrix.size(); i++)
