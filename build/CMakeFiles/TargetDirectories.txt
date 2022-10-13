@@ -1,0 +1,14 @@
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/CMakeFiles/excel-to-matrix.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/CMakeFiles/edit_cache.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/CMakeFiles/rebuild_cache.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/CMakeFiles/list_install_components.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/CMakeFiles/install.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/CMakeFiles/install/local.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/CMakeFiles/install/strip.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/OpenXLSX/CMakeFiles/OpenXLSX.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/OpenXLSX/CMakeFiles/edit_cache.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/OpenXLSX/CMakeFiles/rebuild_cache.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/OpenXLSX/CMakeFiles/list_install_components.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/OpenXLSX/CMakeFiles/install.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/OpenXLSX/CMakeFiles/install/local.dir
+/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/build/OpenXLSX/CMakeFiles/install/strip.dir

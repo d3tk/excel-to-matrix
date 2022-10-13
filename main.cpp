@@ -1,90 +1,50 @@
+#include <OpenXLSX.hpp>
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <chrono>
+#include <random>
+#include <deque>
+#include <numeric>
 
+using namespace OpenXLSX;
 using namespace std;
 
-std::vector<std::vector<string> > matrix(1001, std::vector<string>(4));
-void loadCSV(std::string file_name)
+int main()
 {
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    std::string line = "";
-    std::string temp = "";
+    std::string matrix[1001][6];
 
-    int row = 0;
-    int col = 0;
+    XLDocument doc;
 
-    ifstream in_file;
+    doc.open("/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/DATA/MOCK_DATA.xlsx");
+    auto wks = doc.workbook().worksheet("data");
+    int i = 0;
+    int j = 0;
 
-    in_file.open(file_name);
-
-    if (in_file.is_open())
+    for (auto &row : wks.rows())
     {
-        // cout << "file is open\n";
-
-        int k = 0;
-        int j = 0;
-        while (getline(in_file, line))
+        for (auto &value : std::vector<XLCellValue>(row.values()))
         {
-            // cout << "Getting line...\n";
+            matrix[i][j] = value.get<std::string>();
+            // cout << value.get<std::string>() << " ";
+            j += 1;
+        }
+        j = 0;
+        i += 1;
+        // cout << endl;
+    }
 
-            if (line != "")
-            {
-                // cout << "line is not null \n";
-                j = 0;
-                line = line + ",";
-                // cout << "top of for loop\n";
-                for (int i = 0; i < line.length(); i++)
-                {
-                    // cout << "inside for loop   "<< "i :" << i << " row: " << k << " col: " << j << "\n";
-                    if (line[i] != ',')
-                    {
-                        // cout << "appending temp: " << temp << "\n";
-                        temp += line[i];
-                    }
-                    else
-                    {
-                        // cout << "reached , seperator \n";
-                        matrix[k][j] = temp;
-                        temp = "";
-                        j++;
-                    }
-                }
-            }
-            k++;
+    doc.close();
+
+    i = 0;
+    j = 0;
+    int m = 1001;
+    int n = 6;
+    cout << "\nprinting matrix....\n\n";
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout << matrix[i][j] << " \n"[j == n - 1];
         }
     }
-    else
-    {
-        cout << "failed to open file.";
-    }
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::cout << "Matrix loaded in: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count() << "[ns]"
-              << " with my implementation " << std::endl;
-}
 
-int main(int argc, char const *argv[])
-{
-
-    std::string file_path = "data/";
-    std::string file_name = "";
-    std::cout << "Enter file name with extension: (ie dataset.csv) ";
-    std::cin >> file_name;
-    file_path = file_path + file_name;
-    loadCSV(file_path);
-
-    for (unsigned i = 0; i < matrix.size(); i++)
-    {
-        for (unsigned j = 0; j < matrix[0].size(); j++)
-        {
-            string output = matrix[i][j] + " ";
-            cout << output;
-        }
-        cout << std::endl;
-    }
-
-    cout << "Done, exiting \n";
     return 0;
 }
