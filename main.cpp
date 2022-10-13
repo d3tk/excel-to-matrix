@@ -9,14 +9,31 @@ using namespace std;
 
 int main()
 {
-    std::string matrix[1001][6];
 
     XLDocument doc;
+    std::string path = "../../DATA/";
+    std::string filename;
+    cout << "Enter file name with extension: (ie: data.xlsx) ";
+    cin >> filename;
+    path += filename;
+    doc.open(path);
+    int row;
+    int col;
+    std::string input;
 
-    doc.open("/Users/dtk/Desktop/Projects/DrJuLab/excel-to-matrix/DATA/MOCK_DATA.xlsx");
-    auto wks = doc.workbook().worksheet("data");
+    cout << "Enter rows ";
+    cin >> input;
+    row = std::stoi(input);
+    cout << "Enter columns ";
+    cin >> input;
+    col = std::stoi(input);
+
+    std::string matrix[row][col];
+
     int i = 0;
     int j = 0;
+
+    auto wks = doc.workbook().worksheet("data");
 
     for (auto &row : wks.rows())
     {
@@ -35,8 +52,8 @@ int main()
 
     i = 0;
     j = 0;
-    int m = 1001;
-    int n = 6;
+    int m = row;
+    int n = col;
     cout << "\nprinting matrix....\n\n";
     for (int i = 0; i < m; i++)
     {
